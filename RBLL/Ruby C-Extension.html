@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0053)https://www.chrisleephd.us/projects/ruby_c_howto.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="description" content="Personal website for Chris Lee">
+	<meta name="keywords" content="unix,linux,mac os x,japanese,wireless,security,botnets">
+	<meta name="author" content="Dr. Chris Lee">
+	<meta name="generator" content="webgen - http://webgen.rubyforge.org">
+	<link rel="stylesheet" type="text/css" href="./Ruby C-Extension_files/default.css">
+	<title>Ruby C-Extension</title>
+</head>
+
+<body>
+<div id="wrap">
+	<div id="header">
+	<h1><a href="https://www.chrisleephd.us/index.html">Chris Lee</a></h1>
+	<p><strong>PhD of Messing Stuff Up</strong></p>
+	</div>
+
+	<div id="avmenu">
+		<h2 class="hide">Site menu:</h2>
+		<ul><li class="webgen-menu-level1"><a href="https://www.chrisleephd.us/index.html" hreflang="en">home</a></li><li class="webgen-menu-level1"><a href="https://www.chrisleephd.us/projects.html" hreflang="en">projects</a></li><li class="webgen-menu-level1"><a href="https://www.chrisleephd.us/publications.html" hreflang="en">publications</a></li><li class="webgen-menu-level1 webgen-menu-submenu"><a href="https://www.chrisleephd.us/articles/index.html" hreflang="en">articles</a><ul><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/articles/gtnets.html" hreflang="en">gtnets</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/articles/index.html" hreflang="en">articles</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/articles/mtop_openvpn.html" hreflang="en">MOTP+OpenVPN</a></li></ul></li><li class="webgen-menu-level1 webgen-menu-submenu webgen-menu-submenu-inhierarchy"><a href="https://www.chrisleephd.us/projects/index.html" hreflang="en">projects</a><ul><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/projects/index.html" hreflang="en">projects</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/projects/dns.html" hreflang="en">DNS Research</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/projects/flowtag.html" hreflang="en">FlowTag</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/projects/rainstorm.html" hreflang="en">IDS Rainstorm</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/projects/imapcrypt.html" hreflang="en">IMAPCrypt</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/projects/manetbuilder.html" hreflang="en">ManetBuilder</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/projects/netseclab.html" hreflang="en">NetSec Lab</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/projects/perltk.html" hreflang="en">Perl/Tk</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/projects/rubot.html" hreflang="en">Rubot</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/projects/ruby_cb.html" hreflang="en">Ruby C-Callback</a></li><li class="webgen-menu-level2 webgen-menu-item-selected"><a href="https://www.chrisleephd.us/projects/ruby_c_howto.html" hreflang="en">Ruby C-Extension</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/projects/ruby_c_lib.html" hreflang="en">Ruby C-Lib</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/projects/ruby_inline.html" hreflang="en">Ruby Inline</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/projects/csi4h.html" hreflang="en">Security Index</a></li><li class="webgen-menu-level2"><a href="https://www.chrisleephd.us/projects/visualfirewall.html" hreflang="en">VisualFirewall</a></li></ul></li></ul>		
+
+		<div class="announce">
+		<h2>Latest news:</h2>
+		2012.01.21 Releasing alpha <a href="https://www.chrisleephd.us/projects/imapcrypt.html">IMAPCrypt</a>
+		</div>
+	</div>
+
+	<!-- The following div was not in the original template but was inserted to display the breadcrumb trail
+	and language links -->
+	<div id="contentwide">
+	<p class="textright">Location: <a href="https://www.chrisleephd.us/index.html" hreflang="en">home</a> / <a href="https://www.chrisleephd.us/projects/index.html" hreflang="en">projects</a> / <a href="https://www.chrisleephd.us/projects/ruby_c_howto.html" hreflang="en">Ruby C-Extension</a></p>
+	</div>
+
+	<div id="extras">
+		<h3>Frequented Blogs</h3>
+		<ul>
+
+		<li><a href="http://www.rubyinside.com/">Ruby Inside</a> </li>
+		<li><a href="http://www.macosxhints.com/">MacOSXHints.com</a> </li>
+		<li><a href="http://www.joestewart.org/">Joe Stewart's ACATTAG</a> </li>
+		<li><a href="http://garwarner.blogspot.com/">CyberCrime &amp; Doing Time</a> </li>
+		<li><a href="http://honeyblog.org/">honeyblog</a> </li>
+		<li><a href="http://www.schneier.com/blog/">Schneier on Security</a> </li>
+		<li><a href="http://asert.arbornetworks.com/">Security to the Core | Arbor Networks Security Blog</a> </li>
+		<li><a href="http://taosecurity.blogspot.com/">TaoSecurity</a> </li>
+		<li><a href="http://writequit.org/blog">writequit (:wq)</a> </li>
+		<li><a href="http://geek00l.blogspot.com/">When {Puffy} Meets ^RedDevil^</a> </li>
+		<li><a href="http://hackaday.com/">Hack a Day</a> </li>
+		<li><a href="http://gregmankiw.blogspot.com/">Greg Mankiw's Blog</a> </li>
+		<li><a href="http://sethgodin.typepad.com/seths_blog/">Seth's Blog</a> </li>
+		<li><a href="http://hexblog.com/">Hex blog</a> </li>
+		<li><a href="http://sebastienraveau.blogspot.com/">Tricks of the Trade</a> </li>
+		<li>&nbsp;</li>
+		<li><a href="https://www.chrisleephd.us/blogs.html">&gt;&gt; More Blogs &lt;&lt;</a></li>		
+		</ul>
+	</div>
+
+	<div id="content">
+	<h1 id="building-a-ruby-extension-in-c">Building a Ruby extension in C</h1>
+
+<p>I wanted to make a simple wrapping of C in Ruby and found that some examples
+were either too specific to the library they were wrapping or so generic that I
+had trouble figuring out what pertained to my scenario.  So I started from the
+beginning, using <a href="http://www.rubycentral.com/pickaxe/ext_ruby.html">http://www.rubycentral.com/pickaxe/ext_ruby.html</a>, and started to build from the ground up.</p>
+
+<p>To generate my simple link list extension (RBLL), I followed the following steps:</p>
+<ol>
+  <li>Created my C library.  This library needs no information about Ruby.</li>
+  <li>Tested my library (of course, but it is worth repeating)</li>
+  <li>Wrapped the C library with more C that understands Ruby. #include "ruby.h"</li>
+  <li>Created a extconf.rb script</li>
+  <li>Executed the extconf.rb script to generate a Makefile</li>
+  <li>Called make to generate the .so or .dylib for the extension</li>
+  <li>Ran ruby test</li>
+</ol>
+
+<h2 id="creating-the-c-library">Creating the C Library</h2>
+<p>I wanted something that could act as an object in Ruby and be very simple to implement.  So I created a linked list structure and functions to push, pop, shift, and unshift from the linked list.</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#579">#ifndef</span> __linkedlist_h__
+<span style="color:#579">#define</span> __linkedlist_h__
+
+<span style="color:#080;font-weight:bold">typedef</span> <span style="color:#080;font-weight:bold">struct</span> llnode {
+  <span style="color:#080;font-weight:bold">struct</span> llnode* next;
+  <span style="color:#088;font-weight:bold">void</span> *data;
+} llnode_t;
+
+<span style="color:#080;font-weight:bold">typedef</span> <span style="color:#080;font-weight:bold">struct</span> {
+  llnode_t* head;
+  llnode_t* tail;
+  llnode_t* iterator;
+  <span style="color:#0a8;font-weight:bold">int</span> count;
+} ll;
+
+<span style="color:#088;font-weight:bold">void</span>* ll_shift(ll* linklist);
+<span style="color:#088;font-weight:bold">void</span>* ll_pop(ll* linklist);
+<span style="color:#088;font-weight:bold">void</span> ll_reset(ll* linklist);
+<span style="color:#088;font-weight:bold">void</span>* ll_next(ll* linklist);
+<span style="color:#0a8;font-weight:bold">int</span> ll_size(ll* linklist);
+<span style="color:#088;font-weight:bold">void</span> ll_unshift(ll* linklist, <span style="color:#088;font-weight:bold">void</span>* data);
+<span style="color:#088;font-weight:bold">void</span> ll_push(ll* linklist, <span style="color:#088;font-weight:bold">void</span>* data);
+<span style="color:#088;font-weight:bold">void</span> ll_free(ll* linklist);
+
+<span style="color:#579">#endif</span> <span style="color:#777">//__linkedlist_h__</span>
+</pre></div>
+</div>
+
+<p>The next step was to implement the code for these functions. </p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#579">#include</span> "linkedlist.h"
+<span style="color:#579">#include</span> &lt;stdlib.h&gt;
+
+<span style="color:#088;font-weight:bold">void</span>* ll_shift(ll* linklist)
+{
+  <span style="color:#080;font-weight:bold">if</span>(linklist-&gt;head == <span style="color:#069">NULL</span>)
+    <span style="color:#080;font-weight:bold">return</span> <span style="color:#069">NULL</span>;
+  llnode_t* head = linklist-&gt;head;
+  <span style="color:#088;font-weight:bold">void</span>* data = head-&gt;data;
+  linklist-&gt;head = head-&gt;next;
+  <span style="color:#080;font-weight:bold">if</span>(linklist-&gt;tail == head)
+    linklist-&gt;tail = <span style="color:#069">NULL</span>;
+  free(head);
+  linklist-&gt;count--;
+  <span style="color:#080;font-weight:bold">return</span> data;
+}
+<span style="color:#088;font-weight:bold">void</span>* ll_pop(ll* linklist)
+{
+  <span style="color:#080;font-weight:bold">if</span>(linklist-&gt;tail == <span style="color:#069">NULL</span>)
+    <span style="color:#080;font-weight:bold">return</span> <span style="color:#069">NULL</span>;
+  llnode_t* tail = linklist-&gt;tail;
+  llnode_t* temp = linklist-&gt;head;
+  <span style="color:#088;font-weight:bold">void</span>* data = tail-&gt;data;
+  <span style="color:#080;font-weight:bold">if</span>(temp == tail) {
+    linklist-&gt;tail = <span style="color:#069">NULL</span>;
+    linklist-&gt;head = <span style="color:#069">NULL</span>;
+  } <span style="color:#080;font-weight:bold">else</span> {
+    <span style="color:#080;font-weight:bold">while</span>(temp-&gt;next != tail)
+      temp = temp-&gt;next;
+    temp-&gt;next = <span style="color:#069">NULL</span>;
+    linklist-&gt;tail = temp;
+  }
+  free(tail);
+  linklist-&gt;count--;
+  <span style="color:#080;font-weight:bold">return</span> data;  
+}
+<span style="color:#088;font-weight:bold">void</span> ll_reset(ll* linklist) {
+  linklist-&gt;iterator = linklist-&gt;head;
+}
+<span style="color:#088;font-weight:bold">void</span>* ll_next(ll* linklist) {
+  <span style="color:#080;font-weight:bold">if</span>(linklist-&gt;iterator == <span style="color:#069">NULL</span>)
+    <span style="color:#080;font-weight:bold">return</span> <span style="color:#069">NULL</span>;
+  linklist-&gt;iterator = linklist-&gt;next;
+  <span style="color:#080;font-weight:bold">return</span> linklist-&gt;iterator;
+}
+<span style="color:#0a8;font-weight:bold">int</span> ll_size(ll* linklist)
+{
+  <span style="color:#080;font-weight:bold">return</span> linklist-&gt;count;
+}
+<span style="color:#088;font-weight:bold">void</span> ll_unshift(ll* linklist, <span style="color:#088;font-weight:bold">void</span>* data)
+{
+  llnode_t* new = (llnode_t*)malloc(<span style="color:#080;font-weight:bold">sizeof</span>(llnode_t));
+  <span style="color:#080;font-weight:bold">if</span>(new != <span style="color:#069">NULL</span>) {
+    new-&gt;next = linklist-&gt;head;
+    new-&gt;data = data;
+    linklist-&gt;head = new;
+    <span style="color:#080;font-weight:bold">if</span>(linklist-&gt;tail == <span style="color:#069">NULL</span>)
+      linklist-&gt;tail = new;
+    linklist-&gt;count++;  
+  }
+}
+<span style="color:#088;font-weight:bold">void</span> ll_push(ll* linklist, <span style="color:#088;font-weight:bold">void</span>* data)
+{
+  llnode_t* new = (llnode_t*)malloc(<span style="color:#080;font-weight:bold">sizeof</span>(llnode_t));
+  <span style="color:#080;font-weight:bold">if</span>(new != <span style="color:#069">NULL</span>) {
+    new-&gt;next = <span style="color:#069">NULL</span>;
+    new-&gt;data = data;
+    <span style="color:#080;font-weight:bold">if</span>(linklist-&gt;tail != <span style="color:#069">NULL</span>)
+      linklist-&gt;tail-&gt;next = new;
+    linklist-&gt;tail = new;
+    <span style="color:#080;font-weight:bold">if</span>(linklist-&gt;head == <span style="color:#069">NULL</span>)
+      linklist-&gt;head = new;
+    linklist-&gt;count++;
+  }
+}
+<span style="color:#088;font-weight:bold">void</span> ll_free(ll* linklist) {
+  llnode_t* temp;
+  temp = linklist-&gt;head;
+  <span style="color:#080;font-weight:bold">while</span>(temp != <span style="color:#069">NULL</span>) {
+    temp = linklist-&gt;head-&gt;next;
+    free(linklist-&gt;head);
+    linklist-&gt;count--;
+  }
+  linklist-&gt;head = <span style="color:#069">NULL</span>;
+  linklist-&gt;tail = <span style="color:#069">NULL</span>;
+  free(linklist);
+}</pre></div>
+</div>
+
+<h2 id="testing-the-linked-list">Testing the Linked List</h2>
+<p>To save us many problems later, let’s test the linked list library we just created.</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#579">#include</span> "linkedlist.h"
+<span style="color:#579">#include</span> &lt;stdlib.h&gt;
+<span style="color:#579">#include</span> &lt;strings.h&gt;
+<span style="color:#579">#include</span> &lt;stdio.h&gt;
+
+<span style="color:#0a8;font-weight:bold">int</span> main(<span style="color:#0a8;font-weight:bold">int</span> argc, <span style="color:#0a8;font-weight:bold">char</span>** argv) {
+  <span style="color:#0a8;font-weight:bold">int</span> i;  <span style="color:#088;font-weight:bold">void</span>* data;
+  <span style="color:#0a8;font-weight:bold">int</span> numbers[] = { <span style="color:#00D">1</span>,<span style="color:#00D">2</span>,<span style="color:#00D">3</span>,<span style="color:#00D">4</span> };
+  ll* linklist = (ll*)malloc(<span style="color:#080;font-weight:bold">sizeof</span>(ll));
+  bzero((<span style="color:#088;font-weight:bold">void</span>*)linklist,<span style="color:#080;font-weight:bold">sizeof</span>(ll));
+  <span style="color:#080;font-weight:bold">for</span>(i=<span style="color:#00D">0</span>; i&lt;<span style="color:#00D">4</span>; i++) {
+    printf("inserting %d<span style="color:#F00;background-color:#FAA">\</span>n", numbers[i]);
+    ll_push(linklist, &amp;numbers[i]);
+  }
+  <span style="color:#080;font-weight:bold">while</span>(<span style="color:#00D">1</span>) {
+    data = ll_shift(linklist);
+    <span style="color:#080;font-weight:bold">if</span>(data == <span style="color:#069">NULL</span>) <span style="color:#080;font-weight:bold">break</span>;
+    i = *(<span style="color:#0a8;font-weight:bold">int</span> *)data;
+    printf("popped %d<span style="color:#F00;background-color:#FAA">\</span>n", i);
+  }
+  <span style="color:#080;font-weight:bold">for</span>(i=<span style="color:#00D">0</span>; i&lt;<span style="color:#00D">4</span>; i++) {
+    printf("inserting %d<span style="color:#F00;background-color:#FAA">\</span>n", numbers[i]);
+    ll_unshift(linklist, &amp;numbers[i]);
+  }
+  <span style="color:#080;font-weight:bold">while</span>(<span style="color:#00D">1</span>) {
+    data = ll_pop(linklist);
+    <span style="color:#080;font-weight:bold">if</span>(data == <span style="color:#069">NULL</span>) <span style="color:#080;font-weight:bold">break</span>;
+    i = *(<span style="color:#0a8;font-weight:bold">int</span> *)data;
+    printf("popped %d<span style="color:#F00;background-color:#FAA">\</span>n", i);
+  }
+}</pre></div>
+</div>
+
+<h2 id="wrapping-for-ruby">Wrapping for Ruby</h2>
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#579">#include</span> "ruby.h"
+<span style="color:#579">#include</span> "linkedlist.h"
+
+VALUE cRBLL;
+
+<span style="color:#088;font-weight:bold">static</span> <span style="color:#088;font-weight:bold">void</span> rbll_free(<span style="color:#088;font-weight:bold">void</span> *p) {
+  ll_free(p);
+}
+
+VALUE rbll_new(VALUE class)
+{
+  ll* linklist = (ll*)malloc(<span style="color:#080;font-weight:bold">sizeof</span>(ll));
+  bzero((<span style="color:#088;font-weight:bold">void</span>*)linklist,<span style="color:#080;font-weight:bold">sizeof</span>(ll));
+  VALUE tdata = Data_Wrap_Struct(class, <span style="color:#00D">0</span>, rbll_free, linklist);
+  <span style="color:#080;font-weight:bold">return</span> tdata;
+}
+
+<span style="color:#088;font-weight:bold">static</span> VALUE rbll_push(VALUE self, VALUE anObject) {
+  ll* linklist;
+  Data_Get_Struct(self, ll, linklist);
+  ll_push(linklist, (<span style="color:#088;font-weight:bold">void</span> *)anObject);
+  <span style="color:#080;font-weight:bold">return</span> self;
+}
+
+<span style="color:#088;font-weight:bold">static</span> VALUE rbll_pop(VALUE self) {
+  ll* linklist;
+  VALUE anObject;
+  Data_Get_Struct(self, ll, linklist);
+  anObject = (VALUE)ll_pop(linklist);
+  <span style="color:#080;font-weight:bold">return</span> anObject;
+}
+
+<span style="color:#088;font-weight:bold">static</span> VALUE rbll_unshift(VALUE self, VALUE anObject) {
+  ll* linklist;
+  Data_Get_Struct(self, ll, linklist);
+  ll_unshift(linklist, (<span style="color:#088;font-weight:bold">void</span> *)anObject);
+  <span style="color:#080;font-weight:bold">return</span> self;
+}
+
+<span style="color:#088;font-weight:bold">static</span> VALUE rbll_shift(VALUE self) {
+  ll* linklist;
+  VALUE anObject;
+  Data_Get_Struct(self, ll, linklist);
+  anObject = (VALUE)ll_shift(linklist);
+  <span style="color:#080;font-weight:bold">return</span> anObject;
+}
+
+<span style="color:#088;font-weight:bold">void</span> Init_RBLL() {
+  cRBLL = rb_define_class("RBLL", rb_cObject);
+  rb_define_singleton_method(cRBLL, "new", rbll_new, <span style="color:#00D">0</span>);
+  rb_define_method(cRBLL, "push", rbll_push, <span style="color:#00D">1</span>);
+  rb_define_method(cRBLL, "pop", rbll_pop, <span style="color:#00D">0</span>);
+  rb_define_method(cRBLL, "unshift", rbll_unshift, <span style="color:#00D">1</span>);
+  rb_define_method(cRBLL, "shift", rbll_shift, <span style="color:#00D">0</span>);
+}
+</pre></div>
+</div>
+
+<h2 id="creating-the-extconfrb-file">Creating the extconf.rb file</h2>
+<p>extconf.rb is used by ruby to generate a Makefile.  It will check for library dependencies and generate a Makefile that will generate the package appropriate for your ruby installation and operating system.</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#777"># Loads mkmf which is used to make makefiles for Ruby extensions</span>
+require 'mkmf'
+
+<span style="color:#777"># Give it a name</span>
+extension_name = 'RBLL'
+
+<span style="color:#777"># The destination</span>
+dir_config(extension_name)
+
+<span style="color:#777"># Do the work</span>
+create_makefile(extension_name)
+</pre></div>
+</div>
+
+<h2 id="compile-and-test">Compile and test</h2>
+<p>ruby extconf.rb
+make</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>require 'RBLL'
+p = <span style="color:#036;font-weight:bold">RBLL</span>.new
+(<span style="color:#00D">1</span>..<span style="color:#00D">4</span>).each <span style="color:#080;font-weight:bold">do</span> |i|
+  p.push i
+  puts "pushed <span style="color:#777">#{i}"</span>
+<span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">while</span> i=p.pop <span style="color:#080;font-weight:bold">do</span>
+  puts "popped <span style="color:#777">#{i}"</span>
+<span style="color:#080;font-weight:bold">end</span>
+(<span style="color:#00D">1</span>..<span style="color:#00D">4</span>).each <span style="color:#080;font-weight:bold">do</span> |i|
+  p.unshift i
+  puts "unshifted <span style="color:#777">#{i}"</span>
+<span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">while</span> i=p.shift <span style="color:#080;font-weight:bold">do</span>
+  puts "shifted <span style="color:#777">#{i}"</span>
+<span style="color:#080;font-weight:bold">end</span></pre></div>
+</div>
+
+
+	</div>
+
+	<div id="footer">
+	<p>Copyright © 2012 Chris Lee</p>
+	</div>
+</div>
+
+
+</body></html>

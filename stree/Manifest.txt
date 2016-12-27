@@ -1,0 +1,8 @@
+.autotest
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/stree
+lib/stree.rb
+test/test_stree.rb

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)http://engineering.gusto.com/simple-ruby-c-extensions-with-swig/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Wrapping C libraries with Ruby using SWIG</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" type="text/css" href="./Wrapping C libraries with Ruby using SWIG_files/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./Wrapping C libraries with Ruby using SWIG_files/gusto-typography.css">
+    <link rel="stylesheet" type="text/css" href="./Wrapping C libraries with Ruby using SWIG_files/screen.css">
+
+    
+
+    <link rel="canonical" href="http://engineering.gusto.com/simple-ruby-c-extensions-with-swig/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="http://engineering.gusto.com/simple-ruby-c-extensions-with-swig/amp/">
+    
+    <meta property="og:site_name" content="Gusto Engineering">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Wrapping C libraries with Ruby using SWIG">
+    <meta property="og:description" content="At ZenPayroll, most of our application is written in Ruby, but our tax calculations are done in a C library. Creating Ruby extensions using SWIG (Simplified Wrapper and Interface Generator) has saved us countless hours by automatically generating glue code between Ruby and C. SWIG can be used to generate">
+    <meta property="og:url" content="http://engineering.gusto.com/simple-ruby-c-extensions-with-swig/">
+    <meta property="article:published_time" content="2014-03-25T22:06:00.000Z">
+    <meta property="article:modified_time" content="2015-09-21T19:23:25.000Z">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Wrapping C libraries with Ruby using SWIG">
+    <meta name="twitter:description" content="At ZenPayroll, most of our application is written in Ruby, but our tax calculations are done in a C library. Creating Ruby extensions using SWIG (Simplified Wrapper and Interface Generator) has saved us countless hours by automatically generating glue code between Ruby and C. SWIG can be used to generate">
+    <meta name="twitter:url" content="http://engineering.gusto.com/simple-ruby-c-extensions-with-swig/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Stephen Hopkins">
+    
+    <script type="text/javascript" async="" src="./Wrapping C libraries with Ruby using SWIG_files/dc.js.download"></script><script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Gusto Engineering",
+        "logo": "http://engineering.gusto.com/content/images/2015/09/gusto-engineering-2.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Stephen Hopkins",
+        "url": "http://engineering.gusto.com/author/stephen-hopkins/",
+        "sameAs": []
+    },
+    "headline": "Wrapping C libraries with Ruby using SWIG",
+    "url": "http://engineering.gusto.com/simple-ruby-c-extensions-with-swig/",
+    "datePublished": "2014-03-25T22:06:00.000Z",
+    "dateModified": "2015-09-21T19:23:25.000Z",
+    "description": "At ZenPayroll, most of our application is written in Ruby, but our tax calculations are done in a C library. Creating Ruby extensions using SWIG (Simplified Wrapper and Interface Generator) has saved us countless hours by automatically generating glue code between Ruby and C. SWIG can be used to generate",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://engineering.gusto.com"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.11">
+    <link rel="alternate" type="application/rss+xml" title="Gusto Engineering" href="http://engineering.gusto.com/rss/">
+
+    <script src="./Wrapping C libraries with Ruby using SWIG_files/run_prettify.js.download"></script>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-34249893-1']);
+      _gaq.push(['_setDomainName', 'zenpayroll.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+</head>
+<body class="post-template">
+
+    <header id="site-head">
+        <a id="blog-logo" href="http://engineering.gusto.com/"><div class="bloglogo" style="background: url(/content/images/2015/09/gusto-engineering-2.png)"></div></a>
+        <h2 class="blog-description"><p>The Official Gusto Engineering Blog. We are reimagining payroll, benefits and HR for modern companies.
+</p><p>Learn more at <a href="https://gusto.com/">Gusto.com</a></p></h2>
+    </header>
+
+    
+<main class="content" role="main">
+
+    <article class="post">
+
+
+        <header>
+        
+        <h1 class="post-title">Wrapping C libraries with Ruby using SWIG</h1>
+        <div class="post-meta"><time datetime="2014-03-25">Tuesday, March 25, 2014</time></div>
+        </header>
+
+        <section class="post-content">
+            <p>At ZenPayroll, most of our application is written in Ruby, but our tax calculations are done in a C library. Creating Ruby extensions using SWIG (Simplified Wrapper and Interface Generator) has saved us countless hours by automatically generating glue code between Ruby and C.</p>
+
+<p>SWIG can be used to generate the glue code between C/C++ and various scripting languages, such as Perl, Python, Ruby, and Tcl. In this post, we’ll create a Ruby gem that wraps a simple C library.</p>
+
+<p>So take a swig of beer, coffee, awesome juice or whatever you like, and let's get started! First step is to <a href="http://www.swig.org/download.html">download and install SWIG</a>. </p>
+
+<p>Next, let's create a new gem:</p>
+
+<pre><code class="language-prettyprint lang-bash">$ bundle gem payroll_calculator
+</code></pre>
+
+<p>We’ll start with a simple C library:</p>
+
+<pre><code class="language-prettyprint lang-c">/* ext/libpayroll.h */
+double calculate_sui_tax(const double amount, const double rate);  
+</code></pre>
+
+<pre><code class="language-prettyprint lang-c">/* ext/libpayroll.c */
+#include "libpayroll.h"
+
+double calculate_sui_tax(const double amount, const double rate)  
+{
+  double tax = amount * rate;
+  return tax;
+}
+</code></pre>
+
+<p>Now we need to wrap our C library! Interface files are the input to SWIG. To tell SWIG to wrap the above function, we create the following interface file.</p>
+
+<pre><code class="language-prettyprint lang-c">/* ext/libpayroll.i */
+%module libpayroll
+%{
+  #include "libpayroll.h"
+%}
+
+extern double calculate_sui_tax(const double amount, const double rate);  
+</code></pre>
+
+<p>This tells SWIG to create a Ruby module called <code>Libpayroll</code>, and all the functions listed will be wrapped. To run swig against the interface file, type:</p>
+
+<pre><code class="language-prettyprint lang-bash">$ swig -ruby ext/libpayroll.i
+</code></pre>
+
+<p>This will generate <code>ext/payroll_calculator_wrap.c</code>, which can be compiled into a shared library used in Ruby. To compile, we’ll need an <code>extconf.rb</code>, to configure a Makefile to build the extension. </p>
+
+<pre><code class="language-prettyprint lang-ruby"># ext/extconf.rb
+require 'mkmf'  
+create_makefile('libpayroll')  
+</code></pre>
+
+<p>To create the extension:</p>
+
+<pre><code class="language-prettyprint lang-bash">$ cd ext
+$ ruby extconf.rb
+$ make
+$ cp libpayroll.bundle ../lib
+</code></pre>
+
+<p>Note: if you’re on a linux machine, you will probably see a .so file instead of a .bundle file</p>
+
+<p>Now we can test this out.  Go back to the root directory, and fire up irb:</p>
+
+<pre><code class="language-prettyprint lang-bash">$ irb -Ilib -rpayroll_calculator
+2.0.0-p247 :001 &gt; Libpayroll.calculate_sui_tax(9000, 0.34)  
+ =&gt; 3060.0 
+</code></pre>
+
+<p>We can simplify this with a few rake tasks:</p>
+
+<pre><code class="language-prettyprint lang-ruby"># Rakefile
+require 'bundler/gem_tasks'  
+require 'rake/clean'
+
+CLEAN.include('ext/**/*{.o,.log,.so,.bundle}')  
+CLEAN.include('ext/**/Makefile')  
+CLOBBER.include('lib/*{.so,.bundle}')
+
+desc 'Build the libpayroll C extension'  
+task :build_ext do  
+  Dir.chdir("ext/") do
+    sh "swig -ruby libpayroll.i"
+    ruby "extconf.rb"
+    sh "make"
+  end
+  cp "ext/libpayroll.bundle", "lib/"
+end  
+</code></pre>
+
+<p><code>require 'rake/clean'</code> will give you two additional rake tasks, <code>rake clean</code> and <code>rake clobber</code>, which will help you remove unnecessary files after building your extension.  The next three lines tell the rake tasks which files to include when cleaning and clobbering.</p>
+
+<p>Additionally, we’re adding a task <code>rake build_ext</code>, which will generate the C extension from the SWIG interface file.  </p>
+
+<p>Now that we have the basics setup, let's dive a bit deeper into some more features of SWIG. Let us now say that we have a function in libpayroll.c like this:</p>
+
+<pre><code class="language-prettyprint lang-c">/* libpayroll.c */
+int calculate_income_tax(const double amount, double *tax, double *rate){  
+  if(amount &gt;= 0 &amp;&amp; amount &lt;= 1000) {
+    *rate = 0.25;
+  } else if (amount &gt; 1000 &amp;&amp; amount &lt;= 5000) {
+    *rate = 0.30;
+  } else if (amount &gt; 5000) {
+    *rate = 0.35;
+  } else {
+    return 1;
+  }
+
+  *tax = *rate * amount;
+  return 0;
+}
+</code></pre>
+
+<p>With this function, we have two return values: the tax and the amount.  In Ruby, we would probably want this returned as a hash. SWIG typemaps make this a piece of cake!</p>
+
+<p>Our function currently takes three arguments, but the last two are pointers, and we only care about their values after we call the function, and therefore should really be return values. In Ruby, we want <code>calculate_income_tax</code> to take one argument. To change how SWIG will wrap this function, we first use the <code>in</code> typemap:</p>
+
+<pre><code class="language-prettyprint lang-c">/* ext/libpayroll.i */
+%typemap(in, numinputs=0) (double *tax, double *rate) {
+  $1 = (double *)malloc(1 * sizeof(double));
+  $2 = (double *)malloc(1 * sizeof(double));
+};
+</code></pre>
+
+<p>This means to take a function signature that has <code>double *tax, double *rate</code> and ignore them. <code>$1</code> and <code>$2</code> are then what are actually sent into the C function. Here, we just allocate memory - in this case the size of one double.</p>
+
+<p>Next we handle the return values. We can use the <code>argout</code> typemap to modify the output of the function:</p>
+
+<pre><code class="language-prettyprint lang-c">/* ext/libpayroll.i */
+%typemap(argout) (double *tax, double *rate) {
+  if(result == 0) {
+    $result = rb_hash_new();
+    rb_hash_aset($result, rb_str_new2("tax"), rb_float_new(*$1));
+    rb_hash_aset($result, rb_str_new2("rate"), rb_float_new(*$2));
+  } else {
+    $result = Qfalse;
+  }
+}
+</code></pre>
+
+<p>Whatever we assign to <code>$result</code> is what ends up being returned. We can check the original return value by looking at the result variable. If the result is 0, meaning success, we initialize a new Ruby hash. <code>*$1</code> and <code>*$2</code> refer to <code>double *tax</code> and <code>double *rate</code>, respectively. Calling <code>rb_float_new</code> creates a new Ruby float object from the C double. Finally, we assign the values to keys <code>tax</code> and <code>rate</code> in the Ruby hash. </p>
+
+<p>If the result is not zero, we want to return false in Ruby, which in the Ruby C API is <code>Qfalse</code>. (True and nil are <code>Qtrue</code> and <code>Qnil</code>, respectively)</p>
+
+<p>When we create Ruby objects, the Ruby garbage collector will take care of releasing the memory when it is no longer needed. However, the memory from our initial malloc calls need to be released to avoid memory leaks. This can be done in the <code>freearg</code> typemap.  </p>
+
+<pre><code class="language-prettyprint lang-c">/* ext/libpayroll.i */
+%typemap(freearg) (double *tax, double *rate) {
+  free($1); 
+  free($2);
+}
+</code></pre>
+
+<p>Finally, we add the method signature so that SWIG knows to wrap it:</p>
+
+<pre><code class="language-prettyprint lang-c">/* ext/libpayroll.i */
+int calculate_income_tax(const double amount, double *tax, double *rate);  
+</code></pre>
+
+<p>Note that all typemaps for a given function must be located above the method signature in the interface file.  </p>
+
+<p>Let's try it out!</p>
+
+<pre><code class="language-prettyprint lang-bash">$ rake build_ext
+$ irb -Ilib -rpayroll_calculator
+2.0.0-p247 :001 &gt; Libpayroll.calculate_income_tax(500)  
+ =&gt; {"tax"=&gt;125.0, "rate"=&gt;0.25} 
+2.0.0-p247 :002 &gt; Libpayroll.calculate_income_tax(2000)  
+ =&gt; {"tax"=&gt;600.0, "rate"=&gt;0.3} 
+2.0.0-p247 :003 &gt; Libpayroll.calculate_income_tax(9500)  
+ =&gt; {"tax"=&gt;3325.0, "rate"=&gt;0.35} 
+2.0.0-p247 :004 &gt; Libpayroll.calculate_income_tax(-100)  
+ =&gt; false 
+</code></pre>
+
+<p>This only scratches the surface of SWIG. For more details, <a href="http://www.swig.org/doc.html">check out documentation</a>.  </p>
+
+<p>For the complete source code from this tutorial, <a href="https://github.com/swhopkins/payroll_calculator">fork on GitHub</a>.</p>
+        </section>
+
+        <section class="share">
+            <p class="info prompt">Share this post</p>
+            <a href="http://twitter.com/share?text=Wrapping%20C%20libraries%20with%20Ruby%20using%20SWIG&amp;url=http://engineering.gusto.com/simple-ruby-c-extensions-with-swig/" onclick="window.open(this.href, &#39;twitter-share&#39;, &#39;width=550,height=235&#39;);return false;">
+                <i class="fa fa-2x fa-fw fa-twitter"></i> <span class="hidden">Twitter</span>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://engineering.gusto.com/simple-ruby-c-extensions-with-swig/" onclick="window.open(this.href, &#39;facebook-share&#39;,&#39;width=580,height=296&#39;);return false;">
+                <i class="fa fa-2x fa-fw fa-facebook-square"></i> <span class="hidden">Facebook</span>
+            </a>
+            <a href="https://plus.google.com/share?url=http://engineering.gusto.com/simple-ruby-c-extensions-with-swig/" onclick="window.open(this.href, &#39;google-plus-share&#39;, &#39;width=490,height=530&#39;);return false;">
+                <i class="fa fa-2x fa-fw fa-google-plus-square"></i> <span class="hidden">Google+</span>
+            </a>
+        </section>
+
+        <footer class="post-footer">
+
+            <section class="author">
+                <div class="authorimage" style="background: url()"></div>
+                <p class="attr">Author</p>
+                <h4><a href="http://engineering.gusto.com/simple-ruby-c-extensions-with-swig/">Stephen Hopkins</a></h4>
+                <p class="bio"></p>
+            </section>
+
+        </footer>
+
+
+
+    </article>
+
+</main>
+
+
+    <footer class="site-footer">
+        <div class="inner">
+            <section class="copyright">© 2016 <a href="http://engineering.gusto.com/">Gusto Engineering</a>. All rights reserved.</section>
+        </div>
+    </footer>
+
+    
+
+    <script type="text/javascript" src="./Wrapping C libraries with Ruby using SWIG_files/index.js.download"></script>
+
+
+
+</body></html>

@@ -1,0 +1,81 @@
+img {
+   max-width: 100%;
+}
+
+/* http://colorschemedesigner.com/#5o61Tw0w0w0w0 */
+
+.CodeRay {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.entry {
+  margin-top: 10px;
+}
+
+.post-date {
+  color: #ABF26D;
+}
+
+h3.chart-title {
+  text-align: center;
+}
+
+div.legend {
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+span.legend {
+  border-left: 20px;
+  border-right: 0px;
+  border-top: 0px;
+  border-bottom: 0px;
+  border-style: solid;
+  padding-left: 5px;
+}
+
+canvas, article img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer {
+  text-align: center;
+}
+
+header.masthead img {
+  margin: 20px auto 50px auto;
+  display: block;
+}
+
+h1.posted-title {
+  border-bottom: dotted #A101A6;
+  color: #E20048
+}
+
+h1.posted-title > a {
+  text-decoration: none;
+  color: #E20048
+}
+
+h2 {
+  color: #FF4500;
+}
+
+h3 {
+  color: #A101A6;
+}
+
+a {
+  color: #A101A6;
+}
+
+a:hover {
+  color: #7A207D;
+}

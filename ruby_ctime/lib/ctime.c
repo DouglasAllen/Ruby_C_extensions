@@ -1,5 +1,5 @@
 #include <time.h>
-#include <sys/time.h>
+#include <time.h>
 #include <ruby.h>
 	
 VALUE get_time(VALUE self)
