@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>array_things - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Experimenting+with+C+extensions+in+Ruby">Experimenting with C extensions in Ruby</a>
+    <li><a href="#label-Array+things+in+C">Array things in C</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Makefile.html">Makefile</a>
+  
+    <li><a href="./array_things_md.html">array_things</a>
+  
+    <li><a href="./arrays-x64-mingw32_def.html">arrays-x64-mingw32.def</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page array_things.md">
+
+<h1 id="label-Experimenting+with+C+extensions+in+Ruby">Experimenting with C extensions in Ruby<span><a href="#label-Experimenting+with+C+extensions+in+Ruby">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<h2 id="label-Array+things+in+C">Array things in C<span><a href="#label-Array+things+in+C">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>#include &quot;ruby.h&quot;
+
+static VALUE
+t_init(VALUE self)
+{
+  return self;
+}
+
+static VALUE new_ary(VALUE self){
+  VALUE ary;
+  ary = rb_ary_new();
+  return ary;
+}
+
+static VALUE ary_push(VALUE self, VALUE in_){
+  VALUE ary = rb_ary_new();
+  ary = rb_ary_push(ary, in_);
+  return ary;
+}
+
+static VALUE ary_size(VALUE self, VALUE in_ary){
+  VALUE len = RARRAY_LEN(in_ary);
+  return INT2NUM(len);
+}
+
+VALUE cArrays;
+void Init_arrays()
+{
+  cArrays = rb_define_class(&quot;Arrays&quot;, rb_cObject);
+  rb_define_method(cArrays, &quot;initialize&quot;, t_init, 0);
+  rb_define_method(cArrays, &quot;ary&quot;, new_ary, 0);
+  rb_define_method(cArrays, &quot;push&quot;, ary_push, 1);
+  rb_define_method(cArrays, &quot;size&quot;, ary_size, 1);
+}</pre>
+
+<p>extconf.rb</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;mkmf&quot;</span>
+
+<span class="ruby-identifier">create_makefile</span>(<span class="ruby-string">&quot;arrays&quot;</span>)
+</pre>
+
+<p>test_c_ext.rb</p>
+
+<pre class="ruby"><span class="ruby-identifier">require_relative</span> <span class="ruby-string">&#39;arrays&#39;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;minitest/autorun&#39;</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;benchmark&#39;</span>
+<span class="ruby-comment">#</span>
+<span class="ruby-keyword">class</span> <span class="ruby-constant">TestCExt</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">MiniTest</span><span class="ruby-operator">::</span><span class="ruby-constant">Test</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_time</span>
+    <span class="ruby-identifier">n</span> = <span class="ruby-value">1_000_000</span>
+    <span class="ruby-constant">Benchmark</span>.<span class="ruby-identifier">bm</span>(<span class="ruby-value">7</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">x</span>.<span class="ruby-identifier">report</span>(<span class="ruby-string">&#39;arrays_c:&#39;</span>) { <span class="ruby-identifier">n</span>.<span class="ruby-identifier">times</span> { ; <span class="ruby-identifier">t1</span> = <span class="ruby-constant">Arrays</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">ary</span>; } }
+      <span class="ruby-identifier">x</span>.<span class="ruby-identifier">report</span>(<span class="ruby-string">&#39;array:&#39;</span>) { <span class="ruby-identifier">n</span>.<span class="ruby-identifier">times</span> { ; <span class="ruby-identifier">t2</span> = []; } }
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_c_ext</span>
+    <span class="ruby-identifier">the_extension</span> = <span class="ruby-constant">Arrays</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-constant">Object</span>, <span class="ruby-constant">Arrays</span>.<span class="ruby-identifier">superclass</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-constant">Arrays</span>, <span class="ruby-identifier">the_extension</span>.<span class="ruby-identifier">class</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">test_ary</span>
+    <span class="ruby-identifier">array</span> = <span class="ruby-constant">Arrays</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">assert_equal</span> [], <span class="ruby-identifier">array</span>.<span class="ruby-identifier">ary</span>
+    <span class="ruby-identifier">new_array</span> = <span class="ruby-identifier">array</span>.<span class="ruby-identifier">push</span>(<span class="ruby-string">&#39;a string&#39;</span>)
+    <span class="ruby-identifier">assert_equal</span> [<span class="ruby-string">&#39;a string&#39;</span>], <span class="ruby-identifier">new_array</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">array</span>.<span class="ruby-identifier">size</span>(<span class="ruby-identifier">new_array</span>)
+    <span class="ruby-identifier">p</span> <span class="ruby-identifier">array</span>.<span class="ruby-identifier">push</span>(<span class="ruby-value">10</span>)
+    <span class="ruby-identifier">new_array</span>.<span class="ruby-identifier">push</span>
+    <span class="ruby-identifier">p</span> <span class="ruby-identifier">new_array</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<pre>Run options: --seed 17968
+
+# Running:
+
+[10]
+[&quot;a string&quot;]
+..              user     system      total        real
+arrays_c:  0.438000   0.000000   0.438000 (  0.494209)
+array:    0.219000   0.000000   0.219000 (  0.206909)
+.
+
+Finished in 0.705872s, 4.2501 runs/s, 7.0834 assertions/s.
+
+3 runs, 5 assertions, 0 failures, 0 errors, 0 skips</pre>
+
+<p>More to learn.…</p>
+
+<p>How can you play the game if you don&#39;t know the rules?</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

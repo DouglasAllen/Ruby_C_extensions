@@ -1,0 +1,77 @@
+#!/usr/bin/env ruby
+
+require 'rubygems/package_task'
+
+PKG_FILES = FileList[
+  'Rakefile', 'COPYING', 'README', 'NEWS', 'README.rdoc',
+  'ext/*.[ch]', 'ext/MANIFEST', 'ext/extconf.rb',
+]
+
+SPEC = Gem::Specification.new do |s|
+  s.name = 'example'
+  s.version = '1.0'
+  s.email = 'list@example.com'
+  s.homepage = 'http://example.org/'
+  s.summary = 'C bindings'
+  s.files = PKG_FILES
+  s.required_ruby_version = '>= 1.8.1'
+  s.extensions = 'ext/extconf.rb'
+  s.author = 'List of Authors'
+  s.rubyforge_project = 'None'
+  s.description = 'C Bindings'
+end
+
+Gem::PackageTask.new(SPEC) do |pkg|
+  pkg.need_tar = true
+  pkg.need_zip = true
+end
+
+require 'rdoc/task'
+
+RDOC_FILES = FileList['README.rdoc', 'ext/example.c']
+
+Rake::RDocTask.new do |rd|
+  rd.main = 'README.rdoc'
+  rd.rdoc_dir = 'doc/site/api'
+  rd.rdoc_files.include(RDOC_FILES)
+end
+
+Rake::RDocTask.new(:ri) do |rd|
+  rd.main = 'README.rdoc'
+  rd.rdoc_dir = 'doc/ri'
+  rd.options << '--ri-system'
+  rd.rdoc_files.include(RDOC_FILES)
+end
+
+require 'rake/clean'
+
+EXT_CONF = 'ext/extconf.rb'.freeze
+MAKEFILE = 'ext/Makefile'.freeze
+MODULE = 'ext/example.so'.freeze
+SRC = Dir.glob('ext/*.c')
+SRC << MAKEFILE
+
+CLEAN.include ['ext/*.o', 'ext/depend', MODULE]
+CLOBBER.include ['config.save', 'ext/mkmf.log', 'ext/extconf.h',
+                 MAKEFILE]
+
+file MAKEFILE => EXT_CONF do |_t|
+  Dir.chdir(File.dirname(EXT_CONF)) do
+    unless sh "ruby #{File.basename(EXT_CONF)}"
+      $stderr.puts 'Failed to run extconf'
+      break
+    end
+  end
+end
+
+file MODULE => SRC do |_t|
+  Dir.chdir(File.dirname(EXT_CONF)) do
+    unless sh 'make'
+      $stderr.puts 'make failed'
+      break
+    end
+  end
+end
+
+desc 'Build the native library'
+task build: MODULE

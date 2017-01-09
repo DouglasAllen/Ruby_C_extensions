@@ -1,6 +1,6 @@
 #include "ruby.h"
 
-static VALUE 
+static VALUE
 t_init(VALUE self)
 {
 	return self;

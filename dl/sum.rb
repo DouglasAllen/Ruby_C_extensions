@@ -1,37 +1,15 @@
+#!/usr/bin/env ruby
 # be sure libsum.so is in the same directory
-require 'dl'
-require 'dl/import'
+require File.join(__FILE__, '../libsum')
 
-module LibSum
-  extend DL::Importer
-  dlload './libsum.so'
-  extern 'double sum(double*, int)'
-  extern 'double split(double)'
-end
+require 'fiddle'
 
 a = [2.0, 3.0, 4.0]
 p a
-a_packed = a.pack("d*")
+a_packed = a.pack('d*')
 p a_packed
-sum = LibSum.sum(a_packed, a.count)
-=begin
-double sum(double *arry, int len)
-  {
-          double ret = 0;
-          int i;
-          for(i = 0; i < len; i++){
-                  ret = ret + arry[i];
-          }
-          return ret;
-  }
-=end
+p a.inject() {|acc, var| acc + var}
+lsum = LibSum.new
+sum = lsum.sum(a)
 p sum
-p LibSum.split(sum)
-=begin
- double split(double num)
-  {
-          double ret = 0;
-          ret = num / 2;
-          return ret;
-  }
-=end
+# p LibSum.split(sum)

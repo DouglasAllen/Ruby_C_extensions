@@ -5,6 +5,7 @@ making C work with Ruby
 ## links
 
 * [Creating a gem that includes an extension that is built at install time.](http://guides.rubygems.org/gems-with-extensions/)
+* [Ruby Gems C extension example not working](http://stackoverflow.com/questions/32577356/ruby-gems-c-extension-example-not-working)
 * [Web Development & Programming Thoughts](http://holymonkey.com/)
 * [Building Ruby extensions in C++ using Rice](https://www.ibm.com/developerworks/library/os-extendruby/#ibm-content)
 * [Writing Ruby Extensions in C - Part 1, Project Setup](http://clalance.blogspot.com/2011/01/writing-ruby-extensions-in-c-part-1.html)
@@ -44,4 +45,7 @@ making C work with Ruby
 * [Ruby to C, a couple snippets](https://macournoyer.wordpress.com/category/tutorial/)
 * [How to create a Ruby extension in C in 43 seconds](http://www.rubyinside.com/how-to-create-a-ruby-extension-in-c-in-43-seconds-167.html)
 * [Writing Your Own Ruby Extension With C](http://www.rubyinside.com/writing-your-own-ruby-extension-with-c-366.html)
-
+* [Code Safari: Extending Ruby with C](https://www.sitepoint.com/extending-ruby-with-c/)
+* [Building a Ruby extension in C](https://www.chrisleephd.us/projects/ruby_c_howto.html)
+* [Foo::Bar](https://gist.github.com/mattwildig/1041242)
+* [Basic Knowledge](https://github.com/ruby/ruby/blob/v2_4_0/doc/extension.rdoc#id-or-symbol)

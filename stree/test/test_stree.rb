@@ -1,6 +1,6 @@
 
 require 'test/unit'
-require 'stree'
+require File.join(__FILE__, '../../lib/stree/stree')
 require 'date'
 #
 class TestStree < Test::Unit::TestCase

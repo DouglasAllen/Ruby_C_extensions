@@ -7,7 +7,7 @@
 ID id_status;
 static ID id_push;
 
-static VALUE 
+static VALUE
 t_init(VALUE self)
 {
   VALUE arr;
@@ -16,7 +16,7 @@ t_init(VALUE self)
   return self;
 }
 
-static VALUE 
+static VALUE
 t_add(VALUE self, VALUE obj)
 {
   VALUE arr;
@@ -25,7 +25,7 @@ t_add(VALUE self, VALUE obj)
   return arr;
 }
 
-static VALUE 
+static VALUE
 hello_world(VALUE mod)
 {
   return rb_str_new2("hello world");
@@ -65,6 +65,12 @@ func_true_anomally(VALUE klass, VALUE vd)
     DBL2NUM(func_equation_of_center(klass, NUM2DBL(vd)));
 }
 
+static VALUE
+time_to_time(VALUE self)
+{
+    return rb_funcall(self, rb_intern("getlocal"), 0);
+}
+
 void Init_stree(void)
 {
   VALUE cStree = rb_define_class("Stree", rb_cObject);
@@ -72,7 +78,7 @@ void Init_stree(void)
   rb_define_method(cStree, "add", t_add, 1);
   id_push = rb_intern("push");
   rb_define_method(cStree, "hello_world", hello_world, 0);
-  rb_define_method(cStree, "timespec_now", bug_time_s_timespec_now, 0);  
+  rb_define_method(cStree, "timespec_now", bug_time_s_timespec_now, 0);
   rb_define_method(cStree, "mean_anomally", func_mean_anomally, 1);
   rb_define_method(cStree, "equation_of_center", func_equation_of_center, 1);
   rb_define_method(cStree, "true_anomally", func_true_anomally, 1);
